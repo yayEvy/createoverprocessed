@@ -5,14 +5,50 @@ import com.simibubi.create.content.fluids.transfer.GenericItemFilling;
 import com.simibubi.create.foundation.block.IBE;
 import com.simibubi.create.foundation.fluid.FluidHelper;
 import com.simibubi.create.foundation.fluid.FluidHelper.FluidExchange;
+import net.createoverprocessed.forge.registry.ModBlockEntities;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.Property;
+import org.jetbrains.annotations.Nullable;
 
-public class GrillBlock extends Block implements IWrenchable {
+public class GrillBlock extends Block implements IWrenchable, IBE<GrillBlockEntity> {
 
     public static final BooleanProperty TOP = BooleanProperty.create("top");
+    public static final BooleanProperty HEATED = BooleanProperty.create("heated");
 
     public GrillBlock(Properties arg) {
         super(arg);
     }
+
+
+    @Override
+    public Class getBlockEntityClass() {
+        return null;
+    }
+
+    @Override
+    public BlockEntityType<? extends GrillBlockEntity> getBlockEntityType() {
+        return ModBlockEntities.GRILL.get();
+    }
+
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
+        return (lvl, pos, blockState, be) -> {
+            if (be instanceof GrillBlockEntity grill) {
+                grill.tick();
+            }
+        };
+    }
+
+
+
+
+
+
 }

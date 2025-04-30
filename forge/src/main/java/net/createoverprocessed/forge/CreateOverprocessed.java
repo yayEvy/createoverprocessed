@@ -1,5 +1,6 @@
 package net.createoverprocessed.forge;
 
+import net.createoverprocessed.forge.registry.ModBlockEntities;
 import net.createoverprocessed.forge.registry.ModBlocks;
 import net.createoverprocessed.forge.registry.ModCreativeTabs;
 import net.createoverprocessed.forge.registry.ModItems;
@@ -17,5 +18,8 @@ public class CreateOverprocessed {
         ModBlocks.register(modEventBus);
         ModItems.register(modEventBus);
         ModCreativeTabs.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
+
+
     }
 }
