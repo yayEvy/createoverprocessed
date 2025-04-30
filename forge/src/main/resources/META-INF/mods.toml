@@ -4,30 +4,30 @@ loaderVersion = "[${forge_version},)"
 license = "Insert License Here"
 
 [[mods]]
-modId = "examplemod"
+modId = "createoverprocessed"
 version = "${version}"
-displayName = "Example Mod"
+displayName = "CreateOverprocessed Mod"
 authors = "Me!"
 description = '''
 This is an example description! Tell everyone what your mod is about!
 '''
-logoFile = "icon.png"
+#logoFile = "icon.png"
 
-[[dependencies.examplemod]]
+[[dependencies.createoverprocessed]]
 modId = "forge"
 mandatory = true
 versionRange = "[${forge_version},)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.examplemod]]
+[[dependencies.createoverprocessed]]
 modId = "minecraft"
 mandatory = true
 versionRange = "${minecraft_version}"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.examplemod]]
+[[dependencies.createoverprocessed]]
 modId="create"
 mandatory=true
 versionRange="${create_version}"
