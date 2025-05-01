@@ -35,7 +35,7 @@ public class GrillBlock extends Block implements IWrenchable, IBE<GrillBlockEnti
 
     @Override
     public Class getBlockEntityClass() {
-        return null;
+        return GrillBlockEntity.class;
     }
 
     @Override

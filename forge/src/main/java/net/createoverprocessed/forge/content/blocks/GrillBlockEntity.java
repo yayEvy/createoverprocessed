@@ -28,36 +28,62 @@ public class GrillBlockEntity extends FluidTankBlockEntity implements IHaveGoggl
         fluidCapability = LazyOptional.of(() -> tankInventory);
         forceFluidLevelUpdate = true;
         updateConnectivity = false;
-        blaze = true;
+        blaze = false; //BRUHHH
+    }
+
+    @Override
+    public void initialize() {
+        super.initialize();
+        tankInventory.setCapacity(2000);
+        updateConnectivity = false;
     }
 
 
+    @Override
     protected SmartFluidTank createInventory() {
-        return new SmartFluidTank((getCapacityMultiplier()), this::onFluidStackChanged);
+        return new SmartFluidTank(2000, this::onFluidStackChanged) {
+            @Override
+            public int getCapacity() {
+                return 2000;
+            }
+
+            @Override
+            public boolean isFluidValid(FluidStack stack) {
+                return stack.getFluid().defaultFluidState().is(FluidTags.LAVA);
+            }
+        };
     }
+
+
 
 
     protected void onFluidStackChanged(FluidStack newFluidStack) {
         if (!hasLevel())
             return;
-            if (tankInventory != null) {
-                boolean isLava = newFluidStack.getFluid().defaultFluidState().is(FluidTags.LAVA);
 
-                blaze = !newFluidStack.isEmpty() && isLava;
-
-                setChanged();
-                assert level != null;
-                level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 2);
-
-                level.setBlock(getBlockPos(), getBlockState().setValue(GrillBlock.HEATED, blaze), 2); // wont be here for a bit id lmdokjsansodkf
-
-
+        if (tankInventory != null) {
+            if (newFluidStack.getAmount() > 1990) {
+                newFluidStack.setAmount(2000);
             }
 
+            if (newFluidStack.isEmpty()) {
+                blaze = false;
+            } else {
+                boolean isLava = newFluidStack.getFluid().defaultFluidState().is(FluidTags.LAVA);
+                blaze = isLava;
+            }
+
+            setChanged();
+            assert level != null;
+            level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 2);
+            level.setBlock(getBlockPos(), getBlockState().setValue(GrillBlock.HEATED, blaze), 2);
+        }
     }
 
+
+
     public static int getCapacityMultiplier() {
-        return 4000; // idk we cna change this later lmao (its the amount of mb it holds, in this case it's lava, so idk up to u melody
+        return 1000; // idk we cna change this later lmao (its the amount of mb it holds, in this case it's lava, so idk up to u melodyy
     }
 
     @Override
@@ -78,12 +104,18 @@ public class GrillBlockEntity extends FluidTankBlockEntity implements IHaveGoggl
         if (level.isClientSide)
             return;
 
-        if (tankInventory.getFluidAmount() > 0 && tankInventory.getFluid().getFluid().defaultFluidState().is(FluidTags.LAVA)) {
-            tankInventory.drain(1, IFluidHandler.FluidAction.EXECUTE); // we'll adjust the drain drain later once more of this block is finalized
+        if (tankInventory.getFluidAmount() >= 1 && tankInventory.getFluid().getFluid().defaultFluidState().is(FluidTags.LAVA)) {
+            tankInventory.drain(1, IFluidHandler.FluidAction.EXECUTE);
+            blaze = true;
+            level.setBlock(getBlockPos(), getBlockState().setValue(GrillBlock.HEATED, true), 2);
         } else {
+            blaze = false;
             level.setBlock(getBlockPos(), getBlockState().setValue(GrillBlock.HEATED, false), 2);
         }
+        setChanged();
     }
+
+
     @Override
     public void write(CompoundTag tag, boolean clientPacket) {
         super.write(tag, clientPacket);
