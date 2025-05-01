@@ -1,5 +1,8 @@
 {
   "variants": {
-    "": { "model": "createoverprocessed:block/grill" }
+    "facing=north": { "model": "createoverprocessed:block/grill" },
+    "facing=south": { "model": "createoverprocessed:block/grill", "y": 180 },
+    "facing=west":  { "model": "createoverprocessed:block/grill", "y": 270 },
+    "facing=east":  { "model": "createoverprocessed:block/grill", "y": 90 }
   }
 }
