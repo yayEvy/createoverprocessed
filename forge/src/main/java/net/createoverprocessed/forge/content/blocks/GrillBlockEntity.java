@@ -57,12 +57,21 @@ public class GrillBlockEntity extends FluidTankBlockEntity implements IHaveGoggl
     }
 
     public static int getCapacityMultiplier() {
-        return 4000; // idk we cna change this later lmao
+        return 4000; // idk we cna change this later lmao (its the amount of mb it holds, in this case it's lava, so idk up to u melody
     }
 
     @Override
     public boolean addToGoggleTooltip(List<Component> tooltip, boolean isPlayerSneaking) {
-        return isPlayerSneaking;
+        super.addToGoggleTooltip(tooltip, isPlayerSneaking);
+
+        tooltip.add(Component.literal("Lava: " + tankInventory.getFluidAmount() + "mb"));
+
+        if (blaze) {
+            tooltip.add(Component.literal("Status: Heated"));
+        } else {
+            tooltip.add(Component.literal("Status: Not Heated"));
+        }
+        return true;
     }
 
     public void tick() {

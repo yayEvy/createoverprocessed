@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.Property;
 import org.jetbrains.annotations.Nullable;
@@ -21,10 +22,16 @@ public class GrillBlock extends Block implements IWrenchable, IBE<GrillBlockEnti
     public static final BooleanProperty TOP = BooleanProperty.create("top");
     public static final BooleanProperty HEATED = BooleanProperty.create("heated");
 
+
     public GrillBlock(Properties arg) {
         super(arg);
+        this.registerDefaultState(this.stateDefinition.any().setValue(HEATED, false));
     }
 
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(HEATED);
+    }
 
     @Override
     public Class getBlockEntityClass() {
@@ -35,6 +42,9 @@ public class GrillBlock extends Block implements IWrenchable, IBE<GrillBlockEnti
     public BlockEntityType<? extends GrillBlockEntity> getBlockEntityType() {
         return ModBlockEntities.GRILL.get();
     }
+
+
+
 
     @Nullable
     @Override
