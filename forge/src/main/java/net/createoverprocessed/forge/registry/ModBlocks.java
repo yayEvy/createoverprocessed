@@ -16,7 +16,11 @@ public class ModBlocks {
             DeferredRegister.create(ForgeRegistries.BLOCKS, MOD_ID);
 
     public static final RegistryObject<Block> GRILL_BLOCK =
-            BLOCKS.register("grill", () -> new GrillBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE)));
+            BLOCKS.register("grill", () -> new GrillBlock(
+                    BlockBehaviour.Properties.of().mapColor(MapColor.STONE).noOcclusion()
+            ));
+
+
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);

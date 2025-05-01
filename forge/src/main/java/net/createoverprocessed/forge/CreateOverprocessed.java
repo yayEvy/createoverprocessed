@@ -4,7 +4,10 @@ import net.createoverprocessed.forge.registry.ModBlockEntities;
 import net.createoverprocessed.forge.registry.ModBlocks;
 import net.createoverprocessed.forge.registry.ModCreativeTabs;
 import net.createoverprocessed.forge.registry.ModItems;
+import net.createoverprocessed.forge.rendering.GrillBlockRenderer;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
@@ -19,6 +22,8 @@ public class CreateOverprocessed {
         ModItems.register(modEventBus);
         ModCreativeTabs.register(modEventBus);
         ModBlockEntities.register(modEventBus);
+
+
 
 
     }

@@ -1,5 +1,6 @@
 {
   "credit": "Made with Blockbench",
+  "render_type": "minecraft:solid",
   "texture_size": [128, 128],
   "textures": {
     "1": "createoverprocessed:block/grill"
