@@ -1,8 +1,12 @@
 {
   "variants": {
-    "facing=north": { "model": "createoverprocessed:block/grill" },
-    "facing=south": { "model": "createoverprocessed:block/grill", "y": 180 },
-    "facing=west":  { "model": "createoverprocessed:block/grill", "y": 270 },
-    "facing=east":  { "model": "createoverprocessed:block/grill", "y": 90 }
+    "facing=north,heated=false": { "model": "createoverprocessed:block/grill" },
+    "facing=south,heated=false": { "model": "createoverprocessed:block/grill", "y": 180 },
+    "facing=west,heated=false":  { "model": "createoverprocessed:block/grill", "y": 270 },
+    "facing=east,heated=false":  { "model": "createoverprocessed:block/grill", "y": 90 },
+    "facing=north,heated=true": { "model": "createoverprocessed:block/grill" },
+    "facing=south,heated=true": { "model": "createoverprocessed:block/grill", "y": 180 },
+    "facing=west,heated=true":  { "model": "createoverprocessed:block/grill", "y": 270 },
+    "facing=east,heated=true":  { "model": "createoverprocessed:block/grill", "y": 90 }
   }
 }

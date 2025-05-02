@@ -3,6 +3,7 @@ package net.createoverprocessed.forge.content.blocks;
 import com.simibubi.create.api.equipment.goggles.IHaveGoggleInformation;
 import com.simibubi.create.content.fluids.tank.FluidTankBlockEntity;
 import com.simibubi.create.foundation.fluid.SmartFluidTank;
+import net.createmod.catnip.animation.LerpedFloat;
 import net.createoverprocessed.forge.registry.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -21,6 +22,9 @@ public class GrillBlockEntity extends FluidTankBlockEntity implements IHaveGoggl
 
 
     public boolean blaze; // for the lil blaze guy :3
+    public final LerpedFloat headAnimation = LerpedFloat.linear();
+    public final LerpedFloat headAngle = LerpedFloat.linear();
+
 
     public GrillBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.GRILL.get(), pos, state);
@@ -83,7 +87,7 @@ public class GrillBlockEntity extends FluidTankBlockEntity implements IHaveGoggl
 
 
     public static int getCapacityMultiplier() {
-        return 1000; // idk we cna change this later lmao (its the amount of mb it holds, in this case it's lava, so idk up to u melodyy
+        return 1000; // i think this is useless now
     }
 
     @Override
@@ -100,9 +104,13 @@ public class GrillBlockEntity extends FluidTankBlockEntity implements IHaveGoggl
         return true;
     }
 
+    @Override
     public void tick() {
-        if (level.isClientSide)
+        if (level.isClientSide) {
+            headAnimation.chase(blaze ? 1 : 0, 0.25f, LerpedFloat.Chaser.EXP);
+            headAnimation.tickChaser();
             return;
+        }
 
         if (tankInventory.getFluidAmount() >= 1 && tankInventory.getFluid().getFluid().defaultFluidState().is(FluidTags.LAVA)) {
             tankInventory.drain(1, IFluidHandler.FluidAction.EXECUTE);
@@ -121,6 +129,10 @@ public class GrillBlockEntity extends FluidTankBlockEntity implements IHaveGoggl
         super.write(tag, clientPacket);
         tag.putBoolean("Blaze", blaze);
         tag.putBoolean("Heated", getBlockState().getValue(GrillBlock.HEATED));
+        if (clientPacket) {
+            tag.putFloat("HeadAngle", headAngle.getValue());
+            tag.putFloat("HeadAnim", headAnimation.getValue());
+        }
     }
 
     @Override
@@ -130,6 +142,10 @@ public class GrillBlockEntity extends FluidTankBlockEntity implements IHaveGoggl
         if (level != null) {
             level.setBlock(worldPosition, getBlockState().setValue(GrillBlock.HEATED,
                     tag.getBoolean("Heated")), 2);
+        }
+        if (clientPacket) {
+            headAngle.setValue(tag.getFloat("HeadAngle"));
+            headAnimation.setValue(tag.getFloat("HeadAnim"));
         }
     }
     public static void clientTick(Level level, BlockPos pos, BlockState state, GrillBlockEntity be) {

@@ -21,6 +21,8 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.Property;
 import org.jetbrains.annotations.Nullable;
 
+import static org.spongepowered.asm.util.Annotations.setValue;
+
 public class GrillBlock extends Block implements IWrenchable, IBE<GrillBlockEntity> {
 
     public static final BooleanProperty TOP = BooleanProperty.create("top");
@@ -34,6 +36,7 @@ public class GrillBlock extends Block implements IWrenchable, IBE<GrillBlockEnti
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(HEATED, false)
                 .setValue(FACING, Direction.NORTH));
+
 
     }
 
