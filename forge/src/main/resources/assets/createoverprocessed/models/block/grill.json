@@ -82,7 +82,20 @@
         "south": {"uv": [5.25, 8.75, 7, 9.5], "texture": "#1"},
         "west": {"uv": [3.5, 8.75, 5.25, 9.5], "texture": "#1"},
         "up": {"uv": [3.5, 8.75, 1.75, 7], "texture": "#1"},
-        "down": {"uv": [3.58043, 9.50435, 1.83043, 11.25435], "texture": "#1"}
+        "down": {"uv": [5.25, 7, 3.5, 8.75], "texture": "#1"}
+      }
+    },
+    {
+      "from": [15, 10, 15],
+      "to": [1, 4, 1],
+      "rotation": {"angle": 45, "axis": "x", "origin": [22, 10, 30]},
+      "faces": {
+        "north": {"uv": [0, 14.5, 1.75, 13.75], "texture": "#1"},
+        "east": {"uv": [1.75, 14.5, 3.5, 13.75], "texture": "#1"},
+        "south": {"uv": [3.5, 14.5, 5.25, 13.75], "texture": "#1"},
+        "west": {"uv": [5.25, 14.5, 7, 13.75], "texture": "#1"},
+        "up": {"uv": [5.25, 12, 3.5, 13.75], "texture": "#1"},
+        "down": {"uv": [3.5, 13.625, 1.75, 11.875], "texture": "#1"}
       }
     },
     {
@@ -97,40 +110,21 @@
         "up": {"uv": [7, 3.25, 6.25, 3], "texture": "#1"},
         "down": {"uv": [7.75, 3, 7, 3.25], "texture": "#1"}
       }
+    },
+    {
+      "from": [11, 28, 6],
+      "to": [5, 26, 4],
+      "rotation": {"angle": 45, "axis": "x", "origin": [14, 26, 9]},
+      "faces": {
+        "north": {"uv": [7.125, 3.5, 6.375, 3.25], "texture": "#1"},
+        "east": {"uv": [7.25, 3.5, 7, 3.25], "texture": "#1"},
+        "south": {"uv": [6.75, 3.25, 6, 3], "texture": "#1"},
+        "west": {"uv": [6.375, 3.5, 6.125, 3.25], "texture": "#1"},
+        "up": {"uv": [7.375, 3.25, 8.125, 3.5], "texture": "#1"},
+        "down": {"uv": [7.25, 3.5, 8, 3.25], "texture": "#1"}
+      }
     }
   ],
-  "display": {
-    "thirdperson_righthand": {
-      "rotation": [75, 45, 0],
-      "translation": [0, 2.5, 0],
-      "scale": [0.375, 0.375, 0.375]
-    },
-    "thirdperson_lefthand": {
-      "rotation": [75, 45, 0],
-      "translation": [0, 2.5, 0],
-      "scale": [0.375, 0.375, 0.375]
-    },
-    "firstperson_righthand": {
-      "rotation": [0, 45, 0],
-      "scale": [0.4, 0.4, 0.4]
-    },
-    "firstperson_lefthand": {
-      "rotation": [0, 225, 0],
-      "scale": [0.4, 0.4, 0.4]
-    },
-    "ground": {
-      "translation": [0, 3, 0],
-      "scale": [0.25, 0.25, 0.25]
-    },
-    "gui": {
-      "rotation": [30, 225, 0],
-      "translation": [0, -1.75, 0],
-      "scale": [0.4, 0.4, 0.4]
-    },
-    "fixed": {
-      "scale": [0.5, 0.5, 0.5]
-    }
-  },
   "groups": [
     0,
     1,
@@ -140,7 +134,7 @@
       "name": "Lid",
       "origin": [8, 16, 16],
       "color": 0,
-      "children": [4, 5, 6]
+      "children": [4, 5, 6, 7, 8]
     }
   ]
 }
