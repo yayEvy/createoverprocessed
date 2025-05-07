@@ -21,10 +21,14 @@ public class ModCreativeTabs {
     public static final RegistryObject<CreativeModeTab> OVERPROCESSED_TAB =
             TABS.register("overprocessed", () -> CreativeModeTab.builder()
                     .title(Component.literal("Create: Overprocessed"))
-                    .icon(() -> new ItemStack(ModBlocks.GRILL_BLOCK.get()))
+                    .icon(() -> new ItemStack(ModItems.MOD_LOGO.get()))
                     .displayItems((ItemDisplayParameters parameters, Output output) -> {
                         output.accept(ModBlocks.GRILL_BLOCK.get());
-                        // adding more stuff here later, blocks, items etc idk
+                        output.accept(ModBlocks.PINK_SALT_BLOCK.get());
+                        output.accept(ModItems.SALT.get());
+
+                        // adding more stuff here later, blocks, items etc. I don't know
+                        // wizard was here - Astro_gamer
                     })
                     .build());
 

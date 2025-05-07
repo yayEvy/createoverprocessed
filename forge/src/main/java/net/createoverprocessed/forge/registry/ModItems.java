@@ -18,6 +18,11 @@ public class ModItems {
             ITEMS.register("grill", () ->
                     new BlockItem(ModBlocks.GRILL_BLOCK.get(), new Item.Properties())
             );
+    public static final RegistryObject<Item> SALT =
+            ITEMS.register("salt",()-> new Item(new Item.Properties().food(ModFoods.SALT)));
+
+    public static final RegistryObject<Item> MOD_LOGO =
+            ITEMS.register("mod_logo",()-> new Item(new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

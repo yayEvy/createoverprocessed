@@ -1,3 +1,9 @@
 {
-  "block.createoverprocessed.grill": "Grill"
+  "block.createoverprocessed.grill": "Grill",
+
+  "block.createoverprocessed.salt": "Table Salt",
+
+  "block.createoverprocessed.Mod_logo": "Create: Overprocessed Logo",
+
+  "block.createoverprocessed.pink_salt_block": "Himalayan Salt Block"
 }

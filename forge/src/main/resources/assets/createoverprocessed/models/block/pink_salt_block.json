@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "createoverprocessed:block/pink_salt_block"
+  }
+}
